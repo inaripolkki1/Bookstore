@@ -1,5 +1,7 @@
 package fi.hh.swd20.Bookstore.web;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -12,17 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fi.haagahelia.course.domain.Student;
 import fi.haagahelia.course.domain.StudentRepository;
 import fi.hh.swd20.Bookstore.domain.Book;
+import fi.hh.swd20.Bookstore.domain.BookstoreRepository;
 
 @Controller
 public class BookController {
 	
-}
+
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookstoreRepository repository) {
 	return (args) -> {
-	 // Your code...add some demo data to db
+	 ArrayList<Book> booklist = new ArrayList<>();
+	 booklist.add(new Book("A farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 49.99));
+	 
 	};
-	
+	}
 
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	
@@ -32,7 +37,7 @@ public class BookController {
 	}
 	
 	@Autowired
-	private BookRepository bookRepository; 
+	BookstoreRepository bookRepository; 
 	
     @RequestMapping(value="/booklist")
     public String booktList(Model model) {	
